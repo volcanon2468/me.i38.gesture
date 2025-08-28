@@ -6,13 +6,13 @@ import me.i38.gesture.data.model.RobotConfig
 
 @Dao
 interface RobotDao {
-    @Query("SELECT * FROM RobotConfig WHERE isEnabled = 1 ORDER BY createdAt ASC")
+    @Query("SELECT * FROM robot_configs WHERE isEnabled = 1 ORDER BY createdAt ASC")
     fun getEnabledRobots(): Flow<List<RobotConfig>>
 
-    @Query("SELECT * FROM RobotConfig ORDER BY createdAt ASC")
+    @Query("SELECT * FROM robot_configs ORDER BY createdAt ASC")
     fun getAllRobots(): Flow<List<RobotConfig>>
 
-    @Query("SELECT * FROM RobotConfig WHERE id = :id")
+    @Query("SELECT * FROM robot_configs WHERE id = :id")
     suspend fun getRobotById(id: Long): RobotConfig?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,6 +24,6 @@ interface RobotDao {
     @Delete
     suspend fun deleteRobot(robot: RobotConfig)
 
-    @Query("UPDATE RobotConfig SET isEnabled = :enabled WHERE id = :id")
+    @Query("UPDATE robot_configs SET isEnabled = :enabled WHERE id = :id")
     suspend fun setRobotEnabled(id: Long, enabled: Boolean)
 }

@@ -15,6 +15,8 @@ import me.i38.gesture.data.repository.GestureRepository
 import me.i38.gesture.data.repository.GestureRepositoryImpl
 import me.i38.gesture.utils.PermissionManager
 import me.i38.gesture.utils.SensorHelper
+import me.i38.gesture.utils.ActionExecutor
+import me.i38.gesture.utils.GestureDetector
 import javax.inject.Singleton
 
 @Module
@@ -40,7 +42,7 @@ object AppModule {
             context,
             GestureDatabase::class.java,
             "gesture_database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides
@@ -65,5 +67,21 @@ object AppModule {
         sensorManager: SensorManager
     ): SensorHelper {
         return SensorHelper(context, sensorManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideActionExecutor(@ApplicationContext context: Context): ActionExecutor {
+        return ActionExecutor(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGestureDetector(
+        sensorHelper: SensorHelper,
+        actionExecutor: ActionExecutor,
+        gestureRepository: GestureRepository
+    ): GestureDetector {
+        return GestureDetector(sensorHelper, actionExecutor, gestureRepository)
     }
 }

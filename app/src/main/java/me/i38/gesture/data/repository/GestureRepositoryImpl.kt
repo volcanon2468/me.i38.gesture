@@ -28,6 +28,10 @@ class GestureRepositoryImpl @Inject constructor(
         return database.gestureDao().getAllGestures()
     }
 
+    override fun getEnabledGestures(): Flow<List<GestureConfig>> {
+        return database.gestureDao().getEnabledGestures()
+    }
+
     override suspend fun getGestureById(id: Long): GestureConfig? {
         return database.gestureDao().getGestureById(id)
     }
@@ -83,16 +87,14 @@ class GestureRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getAppConfig(packageName: String): AppConfig? {
-        val gestures = database.gestureDao().getGesturesForApp(packageName)
-        val panelActions = getPanelActions(packageName)
-        
         return try {
             val gesturesList = mutableListOf<GestureConfig>()
-            gestures.collect { gesturesList.addAll(it) }
+            getGesturesForApp(packageName).collect { gesturesList.addAll(it) }
+            val panelActions = getPanelActions(packageName)
             
             AppConfig(
                 packageName = packageName,
-                appName = packageName, // This should be resolved from PackageManager
+                appName = packageName,
                 isCustomEnabled = gesturesList.isNotEmpty(),
                 gestures = gesturesList,
                 panelActions = panelActions
@@ -103,16 +105,20 @@ class GestureRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveAppConfig(appConfig: AppConfig) {
-        // Delete existing gestures for this app
-        deleteGesturesForApp(appConfig.packageName)
-        
-        // Insert new gestures
-        appConfig.gestures.forEach { gesture ->
-            insertGesture(gesture.copy(appPackage = appConfig.packageName))
+        try {
+            // Delete existing gestures for this app
+            deleteGesturesForApp(appConfig.packageName)
+            
+            // Insert new gestures
+            appConfig.gestures.forEach { gesture ->
+                insertGesture(gesture.copy(appPackage = appConfig.packageName))
+            }
+            
+            // Save panel actions
+            savePanelActions(appConfig.packageName, appConfig.panelActions)
+        } catch (e: Exception) {
+            // Handle error
         }
-        
-        // Save panel actions
-        savePanelActions(appConfig.packageName, appConfig.panelActions)
     }
 
     // Settings
@@ -144,7 +150,7 @@ class GestureRepositoryImpl @Inject constructor(
     override fun getPanelActions(appPackage: String): List<String> {
         val json = sharedPreferences.getString("panel_$appPackage", "[]") ?: "[]"
         return try {
-            gson.fromJson(json, object : TypeToken<List<String>>() {}.type)
+            gson.fromJson(json, object : TypeToken<List<String>>() {}.type) ?: emptyList()
         } catch (e: Exception) {
             emptyList()
         }
@@ -157,25 +163,29 @@ class GestureRepositoryImpl @Inject constructor(
 
     // Export/Import
     override suspend fun exportConfiguration(): String {
-        val allGestures = mutableListOf<GestureConfig>()
-        getAllGestures().collect { allGestures.addAll(it) }
-        
-        val allRobots = mutableListOf<RobotConfig>()
-        getAllRobots().collect { allRobots.addAll(it) }
-        
-        val config = mapOf(
-            "gestures" to allGestures,
-            "robots" to allRobots,
-            "settings" to mapOf(
-                "main_switch" to isMainSwitchEnabled(),
-                "vibrate_intensity" to getVibrateIntensity(),
-                "toast_feedback" to isToastFeedbackEnabled()
-            ),
-            "version" to "5.7.7P",
-            "exported_at" to System.currentTimeMillis()
-        )
-        
-        return gson.toJson(config)
+        return try {
+            val allGestures = mutableListOf<GestureConfig>()
+            getAllGestures().collect { allGestures.addAll(it) }
+            
+            val allRobots = mutableListOf<RobotConfig>()
+            getAllRobots().collect { allRobots.addAll(it) }
+            
+            val config = mapOf(
+                "gestures" to allGestures,
+                "robots" to allRobots,
+                "settings" to mapOf(
+                    "main_switch" to isMainSwitchEnabled(),
+                    "vibrate_intensity" to getVibrateIntensity(),
+                    "toast_feedback" to isToastFeedbackEnabled()
+                ),
+                "version" to "5.7.7P",
+                "exported_at" to System.currentTimeMillis()
+            )
+            
+            gson.toJson(config)
+        } catch (e: Exception) {
+            "{}"
+        }
     }
 
     override suspend fun importConfiguration(config: String): Boolean {
@@ -184,12 +194,12 @@ class GestureRepositoryImpl @Inject constructor(
             
             // Import gestures
             val gesturesJson = gson.toJson(configMap["gestures"])
-            val gestures: List<GestureConfig> = gson.fromJson(gesturesJson, object : TypeToken<List<GestureConfig>>() {}.type)
+            val gestures: List<GestureConfig> = gson.fromJson(gesturesJson, object : TypeToken<List<GestureConfig>>() {}.type) ?: emptyList()
             gestures.forEach { insertGesture(it) }
             
             // Import robots
             val robotsJson = gson.toJson(configMap["robots"])
-            val robots: List<RobotConfig> = gson.fromJson(robotsJson, object : TypeToken<List<RobotConfig>>() {}.type)
+            val robots: List<RobotConfig> = gson.fromJson(robotsJson, object : TypeToken<List<RobotConfig>>() {}.type) ?: emptyList()
             robots.forEach { insertRobot(it) }
             
             // Import settings

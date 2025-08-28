@@ -9,6 +9,7 @@ interface GestureRepository {
     // Gesture operations
     fun getGesturesForApp(appPackage: String): Flow<List<GestureConfig>>
     fun getAllGestures(): Flow<List<GestureConfig>>
+    fun getEnabledGestures(): Flow<List<GestureConfig>>
     suspend fun getGestureById(id: Long): GestureConfig?
     suspend fun insertGesture(gesture: GestureConfig): Long
     suspend fun updateGesture(gesture: GestureConfig)

@@ -28,7 +28,7 @@ abstract class GestureDatabase : RoomDatabase() {
                     context.applicationContext,
                     GestureDatabase::class.java,
                     "gesture_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

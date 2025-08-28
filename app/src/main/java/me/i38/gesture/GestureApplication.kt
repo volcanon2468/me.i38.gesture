@@ -35,6 +35,10 @@ class GestureApplication : Application() {
         }
         
         fun getContext(): Context = getInstance()
+        
+        // Premium status - always return premium for all users
+        fun isPremium(): Boolean = true
+        fun getPremiumStatus(): Int = 2 // 2 = Premium
     }
 
     override fun onCreate() {

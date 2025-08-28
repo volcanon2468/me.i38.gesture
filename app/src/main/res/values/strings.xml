@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Micro Gesture</string>
+    
+    <!-- Main Screen -->
+    <string name="main_switch">Main Switch</string>
+    <string name="main_switch_tip">Enable gesture detection to trigger actions by rotating your phone</string>
+    
+    <!-- Actions -->
+    <string name="action_0">None</string>
+    <string name="action_1">Back</string>
+    <string name="action_2">Home</string>
+    <string name="action_3">Recent Tasks</string>
+    <string name="action_4">Notification</string>
+    <string name="action_5">Quick Settings</string>
+    <string name="action_6">Last App</string>
+    <string name="action_7">Power Dialog</string>
+    <string name="action_8">Voice Assistant</string>
+    <string name="action_9">Split Screen</string>
+    
+    <!-- Axes -->
+    <string name="x_axis">X Axis (Tilt up/down)</string>
+    <string name="y_axis">Y Axis (Tilt left/right)</string>
+    <string name="z_axis">Z Axis (Rotate flat)</string>
+    <string name="key_axis">Physical Keys</string>
+    
+    <!-- Settings -->
+    <string name="vibrate_intensity">Vibrate Intensity</string>
+    <string name="toast_feedback">Toast Feedback</string>
+    <string name="gesture_detection">Gesture Detection</string>
+    <string name="accessibility_service">Accessibility Service</string>
+    <string name="gyroscope_available">Gyroscope Available</string>
+    
+    <!-- Permissions -->
+    <string name="overlay_permission">Overlay Permission</string>
+    <string name="write_settings_permission">Write Settings Permission</string>
+    <string name="accessibility_permission">Accessibility Permission</string>
+    
+    <!-- General -->
+    <string name="settings">Settings</string>
+    <string name="add_gesture">Add Gesture</string>
+    <string name="edit_gesture">Edit Gesture</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    
+    <!-- User channels -->
+    <string name="user_channel">User</string>
+    
+    <!-- Beautify actions meta -->
+    <string name="beautify_actions_meta">[{ "id":"me.i38.gesture.service.BeautifySwitchService", "label":"Micro gesture switch", "desc":"Trigger a Micro Gesture switch", "type": "switch", "para":[{"name":"action","label":"Switch","type":"choice","choices":{"value":["Q","R","t","K","p"],"label":["Keep screen on","Touch protector","Force landscape","Force portrait","Pause gesture"]}}] }, { "id":"me.i38.gesture.service.BeautifyActionService", "label":"Micro gesture action", "desc":"Run any Micro Gesture action", "para":[{"name":"action","label":"action","desc":"Copy code from Micro Gesture panel editor here.","type":"text","required": true}] }]</string>
+    
+    <!-- Additional strings -->
+    <string name="accessibility_service_description">Micro Gesture uses accessibility service to perform system actions like back, home, recent tasks, etc. No personal data is collected.</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="permission_granted">Permission Granted</string>
+    <string name="gesture_added">Gesture added successfully</string>
+    <string name="gesture_updated">Gesture updated successfully</string>
+    <string name="gesture_deleted">Gesture deleted successfully</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="loading">Loading...</string>
+</resources>

@@ -29,4 +29,7 @@ interface GestureDao {
 
     @Query("SELECT DISTINCT appPackage FROM gesture_configs")
     suspend fun getConfiguredApps(): List<String>
+
+    @Query("SELECT * FROM gesture_configs WHERE isEnabled = 1")
+    fun getEnabledGestures(): Flow<List<GestureConfig>>
 }

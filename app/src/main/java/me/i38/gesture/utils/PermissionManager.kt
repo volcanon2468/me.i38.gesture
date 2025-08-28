@@ -68,13 +68,17 @@ class PermissionManager @Inject constructor(
 
     fun hasUsageStatsPermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val appOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-            val mode = appOpsManager.checkOpNoThrow(
-                AppOpsManager.OPSTR_GET_USAGE_STATS,
-                android.os.Process.myUid(),
-                context.packageName
-            )
-            mode == AppOpsManager.MODE_ALLOWED
+            try {
+                val appOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+                val mode = appOpsManager.checkOpNoThrow(
+                    AppOpsManager.OPSTR_GET_USAGE_STATS,
+                    android.os.Process.myUid(),
+                    context.packageName
+                )
+                mode == AppOpsManager.MODE_ALLOWED
+            } catch (e: Exception) {
+                false
+            }
         } else {
             true
         }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory android:title="Main Settings">
+        <SwitchPreference
+            android:key="main_switch"
+            android:title="@string/main_switch"
+            android:summary="@string/main_switch_tip"
+            android:defaultValue="false" />
+            
+        <SeekBarPreference
+            android:key="vibrate_intensity"
+            android:title="@string/vibrate_intensity"
+            android:max="30"
+            android:defaultValue="10" />
+            
+        <SwitchPreference
+            android:key="toast_feedback"
+            android:title="@string/toast_feedback"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Advanced">
+        <Preference
+            android:key="gesture_detection"
+            android:title="@string/gesture_detection"
+            android:summary="Configure gesture detection settings" />
+            
+        <Preference
+            android:key="accessibility_service"
+            android:title="@string/accessibility_service"
+            android:summary="Enable accessibility service for gesture actions" />
+    </PreferenceCategory>
+    
+</PreferenceScreen>

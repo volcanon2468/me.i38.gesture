@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<PreferenceScreen android:key="robot_edit" xmlns:android="http://schemas.android.com/apk/res/android">
+  <Preference android:persistent="false"
+              android:title="@string/robot_package"
+              android:key="robot_name" />
+  <ListPreference android:persistent="false"
+                  android:entries="@array/robot_source_entry"
+                  android:title="@string/robot_source"
+                  android:key="robot_s"
+                  android:summary="%s"
+                  android:defaultValue="ui"
+                  android:entryValues="@array/robot_source_values" />
+  <me.i38.gesture.components.EditPreference android:persistent="false"
+                        android:title="@string/robot_node"
+                        android:key="robot_n" />
+  <me.i38.gesture.components.EditPreference android:persistent="false"
+                        android:title="@string/robot_class"
+                        android:key="robot_c"
+                        android:dialogMessage="@string/robot_class_tip" />
+  <me.i38.gesture.components.EditPreference android:persistent="false"
+                        android:title="@string/robot_filter"
+                        android:key="robot_f"
+                        android:dialogMessage="@string/robot_filter_tip" />
+  <Preference android:persistent="false"
+              android:title="@string/robot_action"
+              android:key="robot_a" />
+  <ListPreference android:persistent="false"
+                  android:entries="@array/robot_locked_policy_entry"
+                  android:title="@string/robot_locked_policy"
+                  android:key="robot_o"
+                  android:summary="%s"
+                  android:defaultValue="once"
+                  android:entryValues="@array/robot_locked_policy_values" />
+  <me.i38.gesture.components.EditPreference android:persistent="false"
+                        android:title="@string/robot_interval"
+                        android:key="robot_t"
+                        android:dialogMessage="@string/robot_interval_tip"
+                        android:inputType="numberDecimal|numberSigned" />
+  <me.i38.gesture.components.EditPreference android:persistent="false"
+                        android:title="@string/robot_memo"
+                        android:key="robot_m" />
+  <Preference android:persistent="false"
+              android:title="@string/robot_history"
+              android:key="robot_history" />
+</PreferenceScreen>

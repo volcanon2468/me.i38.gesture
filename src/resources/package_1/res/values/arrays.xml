@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <array name="gesture_count_entry">
+    <item>@string/count_1</item>
+    <item>@string/count_2</item>
+  </array>
+  <string-array name="gesture_count_values">
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <array name="gesture_dir_entry">
+    <item>@string/both_dir</item>
+    <item>@string/positive_dir</item>
+    <item>@string/negative_dir</item>
+  </array>
+  <string-array name="gesture_dir_values">
+    <item>0</item>
+    <item>1</item>
+    <item>-1</item>
+  </string-array>
+  <array name="key_dir_entry">
+    <item>@string/volume_up</item>
+    <item>@string/volume_down</item>
+  </array>
+  <string-array name="key_dir_values">
+    <item>24</item>
+    <item>25</item>
+  </string-array>
+  <array name="landscape_mode_entry">
+    <item>@string/disable</item>
+    <item>@string/normal</item>
+    <item>@string/exchange_xy</item>
+  </array>
+  <string-array name="landscape_mode_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+  <array name="one_hand_mode_entry">
+    <item>@string/one_hand_auto</item>
+    <item>@string/one_hand_miui</item>
+    <item>@string/one_hand_harmony1</item>
+    <item>@string/one_hand_harmony2</item>
+    <item>@string/one_hand_emui</item>
+  </array>
+  <string-array name="one_hand_mode_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+  </string-array>
+  <array name="robot_locked_policy_entry">
+    <item>@string/robot_locked_policy_later_once</item>
+    <item>@string/robot_locked_policy_later</item>
+    <item>@string/robot_locked_policy_now</item>
+  </array>
+  <string-array name="robot_locked_policy_values">
+    <item>once</item>
+    <item>later</item>
+    <item>now</item>
+  </string-array>
+  <array name="robot_source_entry">
+    <item>@string/robot_source_ui</item>
+    <item>@string/notification</item>
+  </array>
+  <string-array name="robot_source_values">
+    <item>ui</item>
+    <item>notification</item>
+  </string-array>
+</resources>

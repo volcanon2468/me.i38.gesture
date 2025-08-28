@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:icon="@drawable/ic_add"
+        android:id="@id/gesture_add"
+        android:title="@string/gesture_add"
+        android:showAsAction="always" />
+  <item android:id="@id/schema_export"
+        android:title="@string/schema_export"
+        android:showAsAction="never" />
+  <item android:id="@id/schema_import"
+        android:title="@string/schema_import"
+        android:showAsAction="never" />
+  <item android:id="@id/config_copy"
+        android:title="@string/config_copy"
+        android:showAsAction="never" />
+  <item android:id="@id/config_clear"
+        android:title="@string/config_clear"
+        android:showAsAction="never" />
+</menu>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <Preference android:icon="@drawable/x"
+              android:persistent="false"
+              android:title="@string/x_axis"
+              android:key="x_axis"
+              android:summary="@string/x_axis_tip" />
+  <Preference android:icon="@drawable/y"
+              android:persistent="false"
+              android:title="@string/y_axis"
+              android:key="y_axis"
+              android:summary="@string/y_axis_tip" />
+  <Preference android:icon="@drawable/z"
+              android:persistent="false"
+              android:title="@string/z_axis"
+              android:key="z_axis"
+              android:summary="@string/z_axis_tip" />
+  <Preference android:icon="@drawable/key"
+              android:persistent="false"
+              android:title="@string/key_axis"
+              android:key="key_axis"
+              android:summary="@string/key_axis_tip" />
+</PreferenceScreen>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <attr name="click_remove_id" formats="integer" />
+  <attr name="collapsed_height" formats="dimension" />
+  <attr name="drag_enabled" formats="bool" />
+  <attr name="drag_handle_id" formats="integer" />
+  <attr name="drag_scroll_start" formats="float" />
+  <attr name="drag_start_mode">
+    <enum name="onDown">0</enum>
+    <enum name="onLongPress">2</enum>
+    <enum name="onMove">1</enum>
+  </attr>
+  <attr name="drop_animation_duration" formats="integer" />
+  <attr name="fling_handle_id" formats="integer" />
+  <attr name="float_alpha" formats="float" />
+  <attr name="float_background_color" formats="color" />
+  <attr name="max_drag_scroll_speed" formats="float" />
+  <attr name="remove_animation_duration" formats="integer" />
+  <attr name="remove_enabled" formats="bool" />
+  <attr name="remove_mode">
+    <enum name="clickRemove">0</enum>
+    <enum name="flingRemove">1</enum>
+  </attr>
+  <attr name="slide_shuffle_speed" formats="float" />
+  <attr name="sort_enabled" formats="bool" />
+  <attr name="track_drag_sort" formats="bool" />
+  <attr name="use_default_controller" formats="bool" />
+</resources>

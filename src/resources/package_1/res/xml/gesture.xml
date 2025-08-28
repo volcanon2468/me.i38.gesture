@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<PreferenceScreen android:key="gesture_edit" xmlns:android="http://schemas.android.com/apk/res/android">
+  <Preference android:persistent="false"
+              android:title="@string/gesture_axis"
+              android:key="axis" />
+  <ListPreference android:persistent="false"
+                  android:entries="@array/gesture_dir_entry"
+                  android:title="@string/gesture_dir"
+                  android:key="dir"
+                  android:summary="%s"
+                  android:entryValues="@array/gesture_dir_values" />
+  <ListPreference android:persistent="false"
+                  android:entries="@array/key_dir_entry"
+                  android:title="@string/gesture_key"
+                  android:key="key"
+                  android:entryValues="@array/key_dir_values" />
+  <ListPreference android:persistent="false"
+                  android:entries="@array/gesture_count_entry"
+                  android:title="@string/gesture_count"
+                  android:key="count"
+                  android:summary="%s"
+                  android:entryValues="@array/gesture_count_values" />
+  <ListPreference android:persistent="false"
+                  android:title="@string/key_mode"
+                  android:key="mode"
+                  android:summary="%s" />
+  <me.i38.gesture.components.SeekBarPreference android:persistent="false"
+                        android:max="40"
+                        android:title="@string/thresh"
+                        android:key="thresh"
+                        android:summary="@string/thresh_tip"
+                        min="0"
+                        unitsLeft=""
+                        unitsRight="" />
+  <Preference android:persistent="false"
+              android:title="@string/action"
+              android:key="action" />
+</PreferenceScreen>
